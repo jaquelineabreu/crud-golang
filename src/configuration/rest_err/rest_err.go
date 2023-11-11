@@ -16,6 +16,10 @@ type Causes struct {
 	Message string `json:"message"`
 }
 
+func (r *RestErr) Error() string {
+	return r.Message
+}
+
 // construtor
 func NewRestErr(message, err string, code int, causes []Causes) *RestErr {
 	return &RestErr{
@@ -42,10 +46,6 @@ func NewBadRequestValidationError(message string, causes []Causes) *RestErr {
 		Code:    http.StatusBadRequest,
 		Causes:  causes,
 	}
-}
-
-func (r *RestErr) Error() string {
-	return r.Message
 }
 
 func NewInternalServerError(message string) *RestErr {
