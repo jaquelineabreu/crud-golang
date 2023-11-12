@@ -6,7 +6,7 @@ import (
 )
 
 func InitRoutes(r *gin.RouterGroup) {
-
+	// relativepath	 			-  hadles
 	r.GET("/getUserById/:userId", controller.FindUserByID)
 	r.GET("/getUserByEmail/:userEmail", controller.FindUserByEmail)
 	r.POST("/createUser", controller.CreateUser)
