@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jaquelineabreu/crud-golang/src/configuration/rest_err"
+	"github.com/jaquelineabreu/crud-golang/src/configuration/validation"
 	"github.com/jaquelineabreu/crud-golang/src/controller/model/request"
 )
 
@@ -15,7 +15,7 @@ func CreateUser(c *gin.Context) {
 
 	if err := c.ShouldBindJSON(&userRequest); err != nil {
 		log.Printf("Error trying to marshal object, error=%s/n", err.Error())
-		restErr := rest_err.NewBadRequestError("Some fiels are incorrect")
+		restErr := validation.ValidationUserErro(err)
 
 		c.JSON(restErr.Code, restErr)
 		return
